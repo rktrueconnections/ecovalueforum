@@ -50,11 +50,12 @@
   <!-- LANGUAGE PREFERENCE SCRIPT (Runs early to prevent UI flashing) -->
   <script>
     (function() {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
       const savedLang = localStorage.getItem('ecoValueLang');
-      if (savedLang === 'he') {
-        document.documentElement.setAttribute('lang', 'he');
-        document.documentElement.setAttribute('dir', 'rtl');
-      }
+      const activeLang = urlLang === 'he' || (!urlLang && savedLang === 'he') ? 'he' : 'en';
+      document.documentElement.setAttribute('lang', activeLang);
+      document.documentElement.setAttribute('dir', activeLang === 'he' ? 'rtl' : 'ltr');
     })();
   </script>
 
@@ -632,7 +633,7 @@
       </button>
 
       <!-- Hamburger Menu Toggle Button -->
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation" data-en-label="Toggle navigation" data-he-label="פתיחת תפריט ניווט" aria-expanded="false">
         ☰
       </button>
     </div>
@@ -660,12 +661,12 @@
 
       <p class="lead">
         <span class="en">For leaders at Israeli-founded companies who understand that achieving real growth and scale in environmental businesses and technologies requires a compelling commercial case.</span>
-        <span class="he">למנהלים ויזמים בחברות ישראליות שמבינים שצמיחה אמיתית בתחומי סביבה וטכנולוגיה דורשת מודל עסקי מנצח.</span>
+        <span class="he">למנהלים ויזמים בחברות ישראליות שמבינים שהצלחה מסחרית היא המפתח לצמיחה ולהתרחבות של פתרונות סביבתיים.</span>
       </p>
 
       <p class="lead">
         <span class="en">Share experience. Learn from peers. Explore opportunities. Support each other's growth.</span>
-        <span class="he">לשתף ניסיון. ללמוד מעמיתים. לחקור הזדמנויות. לתמוך בצמיחה משותפת.</span>
+        <span class="he">לשתף ניסיון. ללמוד מעמיתים. לבחון הזדמנויות. לתמוך בצמיחה משותפת.</span>
       </p>
 
       <div class="hero-buttons">
@@ -725,11 +726,11 @@
           <div class="principle-number">01</div>
           <h3>
             <span class="en">Profit drives scale.</span>
-            <span class="he">רווחיות מניעה צמיחה (Scale).</span>
+            <span class="he">רווחיות מניעה צמיחה.</span>
           </h3>
           <p>
             <span class="en">When solving an environmental problem creates a viable business, the solution can attract customers, entrepreneurs and investment and grow far beyond a pilot.</span>
-            <span class="he">כאשר פתרון לבעיה סביבתית יוצר עסק בר-קיימא, הפתרון מושך לקוחות, יזמים והשקעות - וצומח הרבה מעבר לשלב הפיילוט.</span>
+            <span class="he">כאשר פתרון לבעיה סביבתית יוצר עסק בעל היתכנות מסחרית, הוא יכול למשוך לקוחות, יזמים והשקעות — ולצמוח הרבה מעבר לשלב הפיילוט.</span>
           </p>
         </div>
 
@@ -753,7 +754,7 @@
           </h3>
           <p>
             <span class="en">Israeli technology and entrepreneurship can turn environmental challenges into commercially viable businesses and solutions.</span>
-            <span class="he">טכנולוגיה ויזמות ישראלית יכולות להפוך אתגרים סביבתיים לעסקים ולפתרונות כדאיים מסחרית.</span>
+            <span class="he">טכנולוגיה ויזמות ישראלית יכולות להפוך אתגרים סביבתיים לפתרונות ולעסקים בעלי ערך מסחרי.</span>
           </p>
         </div>
 
@@ -843,7 +844,7 @@
 
       <p class="lead">
         <span class="en">EcoValue Forum brings together leaders at Israeli-founded businesses working across waste-to-value, environmental technology and services to share experience, learn from peers, explore opportunities and support each other's growth.</span>
-        <span class="he">פורום אקו-וליו מפגיש מנהלים מחברות ישראליות הפועלות בתחומי פסולת-למשאב, טכנולוגיות שירותים וסביבה כדי לשתף ניסיון, ללמוד מעמיתים, לחקור הזדמנויות ולתמוך בצמיחה משותפת.</span>
+        <span class="he">פורום אקו-וליו מפגיש מנהלים מחברות ישראליות הפועלות בתחומי פסולת-למשאב, טכנולוגיות ושירותים סביבתיים כדי לשתף ניסיון, ללמוד מעמיתים, לבחון הזדמנויות ולתמוך בצמיחה משותפת.</span>
       </p>
 
       <div class="who-grid">
@@ -865,7 +866,7 @@
           </h3>
           <p>
             <span class="en">Companies that generate, process, purchase or can benefit from recovered resources.</span>
-            <span class="he">חברות שמייצרות, מעבדות, רוכשות או יכולות להפיק תועלת ממשאבים שהושבו.</span>
+            <span class="he">חברות שמייצרות, מעבדות או רוכשות חומרים ומשאבים שניתן להשיב, למחזר או לעשות בהם שימוש חוזר.</span>
           </p>
         </div>
 
@@ -887,7 +888,7 @@
           </h3>
           <p>
             <span class="en">Government, municipalities, regulators and others shaping the markets in which these solutions operate.</span>
-            <span class="he">גורמי ממשל, רשויות מקומיות, רגולטורים ומעצבי שוק התורמים ליצירת סביבת העבודה.</span>
+            <span class="he">גורמי ממשל, רשויות מקומיות, רגולטורים ומעצבי מדיניות המשפיעים על השווקים שבהם הפתרונות האלה פועלים.</span>
           </p>
         </div>
       </div>
@@ -921,7 +922,7 @@
 
         <p>
           <span class="en">A hybrid in-person and virtual event for companies and leaders working in environmentally-focused businesses to share experiences, discuss challenges and opportunities, and learn from each other.</span>
-          <span class="he">אירוע היברידי (פרונטלי ווירטואלי) המיועד לחברות ולמנהלים הפועלים בעסקים ממוקדי-סביבה, כדי לשתף חוויות, לדון באתגרים ובהזדמנויות, וללמוד זה מזה.</span>
+          <span class="he">אירוע היברידי המיועד לחברות ולמנהלים הפועלים בעסקים בתחום הסביבה, כדי לשתף ניסיון, לדון באתגרים ובהזדמנויות וללמוד זה מזה.</span>
         </p>
 
         <a
@@ -1018,7 +1019,7 @@
         <div class="field">
           <label for="interest">
             <span class="en">What brings you to EcoValue?</span>
-            <span class="he">מה מביא אתכם לאקו-וליו?</span>
+            <span class="he">מה מביא אתכם לפורום אקו-וליו?</span>
           </label>
           <!-- Placeholder updated dynamically by JS -->
           <textarea id="interest" name="interest" placeholder="Tell us briefly about your work or interest."></textarea>
@@ -1084,13 +1085,24 @@
     });
   });
 
-  // Language Toggle Logic
+  // Language & URL Query Logic
   function updateUIElements(lang) {
     const isHe = lang === 'he';
     
     // Update Button Text
     const langBtn = document.getElementById('lang-btn');
-    if (langBtn) langBtn.textContent = isHe ? 'English' : 'עברית';
+    if (langBtn) {
+      langBtn.textContent = isHe ? 'English' : 'עברית';
+      langBtn.setAttribute('aria-label', isHe ? 'Switch to English' : 'עברית');
+    }
+
+    // Update mobile navigation accessibility label
+    if (mobileToggle) {
+      mobileToggle.setAttribute(
+        'aria-label',
+        isHe ? mobileToggle.dataset.heLabel : mobileToggle.dataset.enLabel
+      );
+    }
 
     // Update Form Placeholder
     const textArea = document.getElementById('interest');
@@ -1100,7 +1112,7 @@
         : "Tell us briefly about your work or interest.";
     }
 
-    // Update Select Options (since <option> elements cannot safely contain spans)
+    // Update Select Options
     const roleSelect = document.getElementById('role');
     if (roleSelect) {
       if (isHe) {
@@ -1134,17 +1146,36 @@
     html.setAttribute('lang', newLang);
     html.setAttribute('dir', newDir);
     
-    // Save to local storage
+    // Update URL query parameter without reloading page
+    const url = new URL(window.location);
+    if (newLang === 'he') {
+      url.searchParams.set('lang', 'he');
+    } else {
+      url.searchParams.delete('lang');
+    }
+    window.history.pushState({}, '', url);
+
+    // Save preference
     localStorage.setItem('ecoValueLang', newLang);
     
     // Update dynamic text
     updateUIElements(newLang);
   }
 
-  // Set correct UI elements on page load
+  // Set correct UI elements and check URL on page load
   document.addEventListener('DOMContentLoaded', () => {
-    const currentLang = document.documentElement.getAttribute('lang') || 'en';
-    updateUIElements(currentLang);
+    const params = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
+    const savedLang = localStorage.getItem('ecoValueLang');
+    
+    const activeLang = urlLang === 'he' || (!urlLang && savedLang === 'he') ? 'he' : 'en';
+    
+    if (activeLang === 'he') {
+      document.documentElement.setAttribute('lang', 'he');
+      document.documentElement.setAttribute('dir', 'rtl');
+    }
+    
+    updateUIElements(activeLang);
   });
 </script>
 
