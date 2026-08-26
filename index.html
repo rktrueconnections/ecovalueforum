@@ -1,0 +1,882 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>EcoValue Forum | Israel</title>
+
+  <meta name="description"
+        content="EcoValue Forum brings together Israeli technology, business and policy leaders working to turn environmental challenges into economic value.">
+
+  <meta property="og:title" content="EcoValue Forum | Israel">
+  <meta property="og:description"
+        content="Turning environmental challenges into economic opportunities.">
+  <meta property="og:type" content="website">
+
+  <style>
+    :root {
+      --ink: #18352d;
+      --muted: #61736b;
+      --soft: #eef2ed;
+      --cream: #f7f8f4;
+      --white: #ffffff;
+      --line: #dfe6e0;
+      --accent: #557d6d;
+      --accent-dark: #3e6254;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* NAVIGATION */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 20px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+    }
+
+    .brand span {
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    nav a {
+      text-decoration: none;
+      margin-left: 30px;
+      color: #4b6158;
+      font-size: 0.92rem;
+    }
+
+    nav a:hover {
+      color: var(--ink);
+    }
+
+    /* GENERAL */
+
+    .container {
+      max-width: 1180px;
+      margin: auto;
+      padding-left: 6%;
+      padding-right: 6%;
+    }
+
+    section {
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      font-weight: 750;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 7vw, 6.8rem);
+      max-width: 950px;
+      margin: 0 0 30px;
+    }
+
+    h2 {
+      font-size: clamp(2.1rem, 4vw, 3.5rem);
+      margin: 0 0 22px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin: 0 0 10px;
+    }
+
+    .lead {
+      font-size: 1.28rem;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(
+          circle at 85% 30%,
+          #e1ebe5 0,
+          transparent 34%
+        ),
+        var(--cream);
+    }
+
+    .hero-inner {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .hero h1 {
+      max-width: 1050px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-buttons {
+      margin-top: 38px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      padding: 13px 23px;
+      border-radius: 5px;
+      font-weight: 650;
+      font-size: 0.95rem;
+    }
+
+    .button-primary {
+      background: var(--ink);
+      color: white;
+    }
+
+    .button-secondary {
+      border: 1px solid #aebbb4;
+      color: var(--ink);
+      background: transparent;
+    }
+
+    .button:hover {
+      opacity: 0.86;
+    }
+
+    /* THESIS */
+
+    .white {
+      background: var(--white);
+    }
+
+    .thesis {
+      max-width: 900px;
+    }
+
+    .thesis-text {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.3;
+      letter-spacing: -0.025em;
+      font-weight: 550;
+    }
+
+    .thesis-text strong {
+      color: var(--accent-dark);
+    }
+
+    /* PRINCIPLES */
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 55px;
+      margin-top: 55px;
+    }
+
+    .principle-number {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .principle p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* FOCUS */
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .focus-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .focus-list li {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 1.08rem;
+    }
+
+    .focus-list li:first-child {
+      border-top: 1px solid var(--line);
+    }
+
+    /* WHO */
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      margin-top: 55px;
+    }
+
+    .who-card {
+      padding: 28px;
+      background: var(--soft);
+      min-height: 150px;
+    }
+
+    .who-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    /* JOIN */
+
+    .join {
+      background: var(--ink);
+      color: white;
+    }
+
+    .join .eyebrow {
+      color: #a7c1b5;
+    }
+
+    .join h2 {
+      max-width: 750px;
+    }
+
+    .join-intro {
+      max-width: 650px;
+      color: #c4d2cc;
+      font-size: 1.08rem;
+    }
+
+    .form {
+      max-width: 720px;
+      margin-top: 45px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 650;
+      margin-bottom: 7px;
+      color: #dbe5e0;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #60766c;
+      background: #23433a;
+      color: white;
+      border-radius: 4px;
+      padding: 13px 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #b8cec3;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .submit {
+      border: 0;
+      cursor: pointer;
+      background: white;
+      color: var(--ink);
+      padding: 14px 25px;
+      border-radius: 5px;
+      font: inherit;
+      font-weight: 700;
+    }
+
+    .submit:hover {
+      opacity: 0.88;
+    }
+
+    .privacy-note {
+      font-size: 0.78rem;
+      color: #9fb2aa;
+      margin-top: 15px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #102820;
+      color: #aebeb7;
+      padding: 35px 0;
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      nav {
+        display: none;
+      }
+
+      section {
+        padding-top: 70px;
+        padding-bottom: 70px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .principles,
+      .focus-grid,
+      .who-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header>
+  <div class="nav">
+
+    <a class="brand" href="#">
+      EcoValue <span>Forum</span>
+    </a>
+
+    <nav>
+      <a href="#why">Why</a>
+      <a href="#focus">Focus</a>
+      <a href="#community">Community</a>
+      <a href="#join">Join</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="container hero-inner">
+
+      <div class="eyebrow">
+        Israel · Environmental Technology · Markets
+      </div>
+
+      <h1>
+        Turning environmental
+        challenges into
+        <em>economic value.</em>
+      </h1>
+
+      <p class="lead">
+        EcoValue Forum brings together Israeli innovators, entrepreneurs,
+        businesses, researchers and policymakers working to make environmental
+        solutions commercially viable and scalable.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="button button-primary" href="#join">
+          Join the Forum
+        </a>
+
+        <a class="button button-secondary" href="#why">
+          Our approach
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- THESIS -->
+
+  <section id="why" class="white">
+    <div class="container">
+
+      <div class="thesis">
+
+        <div class="eyebrow">
+          The idea
+        </div>
+
+        <p class="thesis-text">
+          Environmental progress does not have to depend on
+          <strong>sacrifice, philanthropy or regulation alone.</strong>
+          The most scalable solutions are often those that create
+          <strong>economic value while solving environmental problems.</strong>
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PRINCIPLES -->
+
+  <section>
+    <div class="container">
+
+      <div class="eyebrow">
+        What we believe
+      </div>
+
+      <h2>
+        Make the solution<br>
+        the profitable choice.
+      </h2>
+
+      <div class="principles">
+
+        <div class="principle">
+          <div class="principle-number">01</div>
+
+          <h3>Profit drives scale.</h3>
+
+          <p>
+            When solving an environmental problem creates a viable business,
+            the solution can attract customers, entrepreneurs and investment
+            and grow far beyond a pilot.
+          </p>
+        </div>
+
+
+        <div class="principle">
+          <div class="principle-number">02</div>
+
+          <h3>Waste can become value.</h3>
+
+          <p>
+            Materials, energy and resources currently treated as waste can
+            become inputs, products and new sources of economic value.
+          </p>
+        </div>
+
+
+        <div class="principle">
+          <div class="principle-number">03</div>
+
+          <h3>Technology enables the transition.</h3>
+
+          <p>
+            Israeli technology and entrepreneurship can turn environmental
+            challenges into commercially viable businesses and solutions.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FOCUS -->
+
+  <section id="focus" class="white">
+    <div class="container">
+
+      <div class="focus-grid">
+
+        <div>
+
+          <div class="eyebrow">
+            Initial focus
+          </div>
+
+          <h2>
+            From waste<br>
+            to value.
+          </h2>
+
+          <p class="lead">
+            EcoValue initially focuses on waste-to-value technologies and
+            businesses, while creating a platform that can expand into the
+            broader environmental technology ecosystem.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <ul class="focus-list">
+            <li>Waste-to-value technologies</li>
+            <li>Resource recovery</li>
+            <li>Recycling & advanced materials</li>
+            <li>Energy recovery</li>
+            <li>Circular economy</li>
+            <li>Environmental technology</li>
+            <li>Commercialization & market adoption</li>
+            <li>Policy & market mechanisms</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- COMMUNITY -->
+
+  <section id="community">
+    <div class="container">
+
+      <div class="eyebrow">
+        The ecosystem
+      </div>
+
+      <h2>
+        Bringing the right<br>
+        people together.
+      </h2>
+
+      <p class="lead">
+        EcoValue is designed to connect people who can turn environmental
+        innovation into real-world adoption and economic value.
+      </p>
+
+
+      <div class="who-grid">
+
+        <div class="who-card">
+          <h3>Technology</h3>
+          <p>
+            Startups, innovators, engineers and technology developers.
+          </p>
+        </div>
+
+        <div class="who-card">
+          <h3>Industry</h3>
+          <p>
+            Companies that generate, process, purchase or can benefit from
+            recovered resources.
+          </p>
+        </div>
+
+        <div class="who-card">
+          <h3>Business</h3>
+          <p>
+            Entrepreneurs, operators and commercial leaders building
+            environmental businesses.
+          </p>
+        </div>
+
+        <div class="who-card">
+          <h3>Policy</h3>
+          <p>
+            Government, municipalities, regulators and others shaping the
+            markets in which these solutions operate.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- JOIN -->
+
+  <section id="join" class="join">
+    <div class="container">
+
+      <div class="eyebrow">
+        Join the Forum
+      </div>
+
+      <h2>
+        Be part of Israel's
+        waste-to-value ecosystem.
+      </h2>
+
+      <p class="join-intro">
+        We are building a community across technology, business, industry
+        and policy. If you are working on environmental technologies,
+        markets or solutions, we'd like to hear from you.
+      </p>
+
+
+      <!--
+        FORM SUBMIT SETUP
+
+        Replace YOUR_FORMSUBMIT_ENDPOINT below with the randomized
+        FormSubmit endpoint created for this form.
+
+        Example format:
+        https://formsubmit.co/xxxxxxxxxxxxxxxxxxxxxxxx
+
+        Do NOT replace it with your actual email address.
+      -->
+
+      <form
+        class="form"
+        action="YOUR_FORMSUBMIT_ENDPOINT"
+        method="POST"
+      >
+
+        <input
+          type="hidden"
+          name="_subject"
+          value="New EcoValue Forum Member"
+        >
+
+        <input
+          type="hidden"
+          name="_template"
+          value="table"
+        >
+
+        <input
+          type="hidden"
+          name="_next"
+          value="https://ecovalueforum.com/thanks.html"
+        >
+
+        <!-- Honeypot anti-spam field -->
+        <input
+          type="text"
+          name="_honey"
+          tabindex="-1"
+          autocomplete="off"
+          style="display:none"
+        >
+
+
+        <div class="form-row">
+
+          <div class="field">
+            <label for="name">Name *</label>
+
+            <input
+              id="name"
+              type="text"
+              name="name"
+              required
+              autocomplete="name"
+            >
+          </div>
+
+
+          <div class="field">
+            <label for="email">Email *</label>
+
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+            >
+          </div>
+
+        </div>
+
+
+        <div class="form-row">
+
+          <div class="field">
+            <label for="organization">Organization</label>
+
+            <input
+              id="organization"
+              type="text"
+              name="organization"
+              autocomplete="organization"
+            >
+          </div>
+
+
+          <div class="field">
+            <label for="role">Role / Area</label>
+
+            <select id="role" name="role">
+              <option value="">Please select</option>
+              <option value="Technology / Startup">
+                Technology / Startup
+              </option>
+              <option value="Industry">
+                Industry
+              </option>
+              <option value="Entrepreneur / Business">
+                Entrepreneur / Business
+              </option>
+              <option value="Investor">
+                Investor
+              </option>
+              <option value="Government / Policy">
+                Government / Policy
+              </option>
+              <option value="Research / Academia">
+                Research / Academia
+              </option>
+              <option value="Other">
+                Other
+              </option>
+            </select>
+          </div>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="interest">
+            What brings you to EcoValue?
+          </label>
+
+          <textarea
+            id="interest"
+            name="interest"
+            placeholder="Tell us briefly about your work or interest."
+          ></textarea>
+
+        </div>
+
+
+        <button class="submit" type="submit">
+          Join the Forum →
+        </button>
+
+        <p class="privacy-note">
+          Your information will only be used to contact you about
+          EcoValue Forum activities.
+        </p>
+
+      </form>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="container footer-inner">
+
+    <div>
+      © 2026 EcoValue Forum · Israel
+    </div>
+
+    <div>
+      Environmental value through economic value.
+    </div>
+
+  </div>
+</footer>
+
+
+</body>
+</html>
+```
