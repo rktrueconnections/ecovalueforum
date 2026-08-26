@@ -1,12 +1,5 @@
-Here is the final, complete code. As requested, I left your design, colors, and content completely untouched, only adding the necessary code to implement the three specific fixes:
-
-1. **Accessibility (a11y):** Added the `lang="en"` attribute to the `<html>` tag, added ARIA labels for screen readers on the new menu button, and added a clear `:focus-visible` outline for keyboard navigation.
-2. **Sticky Header Overlap:** Added `scroll-padding-top: 90px;` to the `html` CSS to ensure the sticky header doesn't cover section titles when anchor links are clicked.
-3. **Mobile Menu:** Added a clean hamburger menu toggle button, updated the CSS to reveal a dropdown menu on mobile, and included a tiny, lightweight script at the bottom to handle opening/closing it.
-
-```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,6 +47,17 @@ Here is the final, complete code. As requested, I left your design, colors, and 
   }
   </script>
 
+  <!-- LANGUAGE PREFERENCE SCRIPT (Runs early to prevent UI flashing) -->
+  <script>
+    (function() {
+      const savedLang = localStorage.getItem('ecoValueLang');
+      if (savedLang === 'he') {
+        document.documentElement.setAttribute('lang', 'he');
+        document.documentElement.setAttribute('dir', 'rtl');
+      }
+    })();
+  </script>
+
   <style>
     :root {
       --ink: #18352d;
@@ -78,9 +82,12 @@ Here is the final, complete code. As requested, I left your design, colors, and 
 
     html {
       scroll-behavior: smooth;
-      /* Fixes sticky header covering section titles when anchored */
       scroll-padding-top: 90px; 
     }
+
+    /* LANGUAGE DISPLAY LOGIC */
+    html[lang="en"] .he { display: none !important; }
+    html[lang="he"] .en { display: none !important; }
 
     body {
       margin: 0;
@@ -133,15 +140,38 @@ Here is the final, complete code. As requested, I left your design, colors, and 
       color: var(--muted);
     }
 
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
     nav a {
       text-decoration: none;
-      margin-left: 30px;
+      /* Logical property instead of margin-left ensures it adapts to LTR/RTL automatically */
+      margin-inline-start: 30px;
       color: #4b6158;
       font-size: 0.92rem;
     }
 
     nav a:hover {
       color: var(--ink);
+    }
+
+    .lang-toggle {
+      background: transparent;
+      border: 1px solid var(--muted);
+      color: var(--ink);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .lang-toggle:hover {
+      background: var(--line);
     }
 
     .mobile-menu-toggle {
@@ -215,6 +245,17 @@ Here is the final, complete code. As requested, I left your design, colors, and 
       background:
         radial-gradient(
           circle at 85% 30%,
+          #e1ebe5 0,
+          transparent 34%
+        ),
+        var(--cream);
+    }
+
+    /* RTL specific background override for visual balance */
+    html[dir="rtl"] .hero {
+      background:
+        radial-gradient(
+          circle at 15% 30%,
           #e1ebe5 0,
           transparent 34%
         ),
@@ -494,6 +535,10 @@ Here is the final, complete code. As requested, I left your design, colors, and 
       .mobile-menu-toggle {
         display: block;
       }
+
+      .nav-controls {
+        gap: 15px;
+      }
       
       nav {
         display: none;
@@ -545,7 +590,6 @@ Here is the final, complete code. As requested, I left your design, colors, and 
   </style>
 </head>
 
-
 <body>
 
 <!-- NAVIGATION -->
@@ -553,22 +597,45 @@ Here is the final, complete code. As requested, I left your design, colors, and 
 <header>
   <div class="nav">
 
+    <!-- Kept brand name standard for both languages -->
     <a class="brand" href="#">
       EcoValue <span>Forum</span>
     </a>
 
-    <!-- Hamburger Menu Toggle Button -->
-    <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
-      ☰
-    </button>
-
     <nav id="main-nav">
-      <a href="#why">Why</a>
-      <a href="#focus">Focus</a>
-      <a href="#community">Community</a>
-      <a href="#events">Upcoming Events</a>
-      <a href="#join">Join</a>
+      <a href="#why">
+        <span class="en">Why</span>
+        <span class="he">למה</span>
+      </a>
+      <a href="#focus">
+        <span class="en">Focus</span>
+        <span class="he">מיקוד</span>
+      </a>
+      <a href="#community">
+        <span class="en">Community</span>
+        <span class="he">קהילה</span>
+      </a>
+      <a href="#events">
+        <span class="en">Upcoming Events</span>
+        <span class="he">אירועים קרובים</span>
+      </a>
+      <a href="#join">
+        <span class="en">Join</span>
+        <span class="he">הצטרפות</span>
+      </a>
     </nav>
+
+    <div class="nav-controls">
+      <!-- Language Switcher -->
+      <button class="lang-toggle" onclick="toggleLanguage()" id="lang-btn">
+        <!-- Text injected by JS on load -->
+      </button>
+
+      <!-- Hamburger Menu Toggle Button -->
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+    </div>
 
   </div>
 </header>
@@ -582,35 +649,34 @@ Here is the final, complete code. As requested, I left your design, colors, and 
     <div class="container hero-inner">
 
       <div class="eyebrow">
-        Israel · Waste-to-Value · Environmental Businesses
+        <span class="en">Israel · Waste-to-Value · Environmental Businesses</span>
+        <span class="he">ישראל · פסולת למשאב · עסקים סביבתיים</span>
       </div>
 
       <h1>
-        Israeli W2V
-        <em>Community.</em>
+        <span class="en">Israeli W2V<br><em>Community.</em></span>
+        <span class="he">קהילת W2V<br><em>ישראלית.</em></span>
       </h1>
 
       <p class="lead">
-        For leaders at Israeli-founded companies who understand that achieving
-        real growth and scale in environmental businesses and technologies
-        requires a compelling commercial case. 
+        <span class="en">For leaders at Israeli-founded companies who understand that achieving real growth and scale in environmental businesses and technologies requires a compelling commercial case.</span>
+        <span class="he">למנהלים ויזמים בחברות ישראליות שמבינים שצמיחה אמיתית בתחומי סביבה וטכנולוגיה דורשת מודל עסקי מנצח.</span>
       </p>
 
       <p class="lead">
-        Share experience. Learn from peers. Explore opportunities.
-        Support each other's growth.
+        <span class="en">Share experience. Learn from peers. Explore opportunities. Support each other's growth.</span>
+        <span class="he">לשתף ניסיון. ללמוד מעמיתים. לחקור הזדמנויות. לתמוך בצמיחה משותפת.</span>
       </p>
 
       <div class="hero-buttons">
-
         <a class="button button-primary" href="#events">
-          See Upcoming Events →
+          <span class="en">See Upcoming Events →</span>
+          <span class="he">צפו באירועים קרובים ←</span>
         </a>
-
         <a class="button button-secondary" href="#why">
-          Our approach
+          <span class="en">Our approach</span>
+          <span class="he">הגישה שלנו</span>
         </a>
-
       </div>
 
     </div>
@@ -623,16 +689,15 @@ Here is the final, complete code. As requested, I left your design, colors, and 
     <div class="container">
 
       <div class="thesis">
-
         <div class="eyebrow">
-          About EcoValue
+          <span class="en">About EcoValue</span>
+          <span class="he">על אקו-וליו</span>
         </div>
 
         <p class="thesis-text">
-          The most scalable solutions are those that create
-          <strong>economic value while solving environmental problems.</strong>
+          <span class="en">The most scalable solutions are those that create <strong>economic value while solving environmental problems.</strong></span>
+          <span class="he">הפתרונות עם פוטנציאל הצמיחה הגדול ביותר הם אלו שיוצרים <strong>ערך כלכלי תוך פתרון בעיות סביבתיות.</strong></span>
         </p>
-
       </div>
 
     </div>
@@ -645,49 +710,50 @@ Here is the final, complete code. As requested, I left your design, colors, and 
     <div class="container">
 
       <div class="eyebrow">
-        What we believe
+        <span class="en">What we believe</span>
+        <span class="he">במה אנחנו מאמינים</span>
       </div>
 
       <h2>
-        Make the solution<br>
-        the profitable choice.
+        <span class="en">Make the solution<br>the profitable choice.</span>
+        <span class="he">להפוך את הפתרון<br>לבחירה הרווחית.</span>
       </h2>
 
       <div class="principles">
 
         <div class="principle">
           <div class="principle-number">01</div>
-
-          <h3>Profit drives scale.</h3>
-
+          <h3>
+            <span class="en">Profit drives scale.</span>
+            <span class="he">רווחיות מניעה צמיחה (Scale).</span>
+          </h3>
           <p>
-            When solving an environmental problem creates a viable business,
-            the solution can attract customers, entrepreneurs and investment
-            and grow far beyond a pilot.
+            <span class="en">When solving an environmental problem creates a viable business, the solution can attract customers, entrepreneurs and investment and grow far beyond a pilot.</span>
+            <span class="he">כאשר פתרון לבעיה סביבתית יוצר עסק בר-קיימא, הפתרון מושך לקוחות, יזמים והשקעות - וצומח הרבה מעבר לשלב הפיילוט.</span>
           </p>
         </div>
-
 
         <div class="principle">
           <div class="principle-number">02</div>
-
-          <h3>Waste can become value.</h3>
-
+          <h3>
+            <span class="en">Waste can become value.</span>
+            <span class="he">פסולת יכולה להפוך לערך.</span>
+          </h3>
           <p>
-            Materials, energy and resources currently treated as waste can
-            become inputs, products and new sources of economic value.
+            <span class="en">Materials, energy and resources currently treated as waste can become inputs, products and new sources of economic value.</span>
+            <span class="he">חומרים, אנרגיה ומשאבים שמתייחסים אליהם כיום כפסולת, יכולים להפוך לתשומות, למוצרים ולמקורות חדשים של ערך כלכלי.</span>
           </p>
         </div>
 
-
         <div class="principle">
           <div class="principle-number">03</div>
-
-          <h3>Technology enables the transition.</h3>
-
+          <h3>
+            <span class="en">Technology enables the transition.</span>
+            <span class="he">טכנולוגיה מאפשרת את המעבר.</span>
+          </h3>
           <p>
-            Israeli technology and entrepreneurship can turn environmental
-            challenges into commercially viable businesses and solutions.
+            <span class="en">Israeli technology and entrepreneurship can turn environmental challenges into commercially viable businesses and solutions.</span>
+            <span class="he">טכנולוגיה ויזמות ישראלית יכולות להפוך אתגרים סביבתיים לעסקים ולפתרונות כדאיים מסחרית.</span>
           </p>
         </div>
 
@@ -703,42 +769,57 @@ Here is the final, complete code. As requested, I left your design, colors, and 
     <div class="container">
 
       <div class="focus-grid">
-
         <div>
-
           <div class="eyebrow">
-            Initial focus
+            <span class="en">Initial focus</span>
+            <span class="he">מיקוד ראשוני</span>
           </div>
-
           <h2>
-            From waste<br>
-            to value.
+            <span class="en">From waste<br>to value.</span>
+            <span class="he">מפסולת<br>לערך.</span>
           </h2>
-
           <p class="lead">
-            EcoValue initially focuses on waste-to-value businesses,
-            while creating a platform that can expand into the broader
-            environmental technology and services ecosystem.
+            <span class="en">EcoValue initially focuses on waste-to-value businesses, while creating a platform that can expand into the broader environmental technology and services ecosystem.</span>
+            <span class="he">אקו-וליו מתמקדת תחילה בעסקי פסולת-למשאב (Waste-to-Value), תוך יצירת פלטפורמה שתוכל להתרחב לאקוסיסטם הרחב יותר של טכנולוגיות ושירותי סביבה.</span>
           </p>
-
         </div>
-
 
         <div>
-
           <ul class="focus-list">
-            <li>Waste-to-value technologies</li>
-            <li>Resource recovery</li>
-            <li>Recycling & advanced materials</li>
-            <li>Energy recovery</li>
-            <li>Circular economy</li>
-            <li>Environmental technology</li>
-            <li>Commercialization & market adoption</li>
-            <li>Policy & market mechanisms</li>
+            <li>
+              <span class="en">Waste-to-value technologies</span>
+              <span class="he">טכנולוגיות פסולת-למשאב</span>
+            </li>
+            <li>
+              <span class="en">Resource recovery</span>
+              <span class="he">השבת משאבים</span>
+            </li>
+            <li>
+              <span class="en">Recycling & advanced materials</span>
+              <span class="he">מחזור וחומרים מתקדמים</span>
+            </li>
+            <li>
+              <span class="en">Energy recovery</span>
+              <span class="he">השבת אנרגיה</span>
+            </li>
+            <li>
+              <span class="en">Circular economy</span>
+              <span class="he">כלכלה מעגלית</span>
+            </li>
+            <li>
+              <span class="en">Environmental technology</span>
+              <span class="he">טכנולוגיות סביבה</span>
+            </li>
+            <li>
+              <span class="en">Commercialization & market adoption</span>
+              <span class="he">מסחור וחדירה לשוק</span>
+            </li>
+            <li>
+              <span class="en">Policy & market mechanisms</span>
+              <span class="he">מדיניות ומנגנוני שוק</span>
+            </li>
           </ul>
-
         </div>
-
       </div>
 
     </div>
@@ -751,55 +832,64 @@ Here is the final, complete code. As requested, I left your design, colors, and 
     <div class="container">
 
       <div class="eyebrow">
-        The ecosystem
+        <span class="en">The ecosystem</span>
+        <span class="he">האקוסיסטם</span>
       </div>
 
       <h2>
-        Bringing the right<br>
-        people together.
+        <span class="en">Bringing the right<br>people together.</span>
+        <span class="he">מחברים את האנשים<br>הנכונים.</span>
       </h2>
 
       <p class="lead">
-        EcoValue Forum brings together leaders at Israeli-founded businesses
-        working across waste-to-value, environmental technology and services
-        to share experience, learn from peers, explore opportunities and
-        support each other's growth.
+        <span class="en">EcoValue Forum brings together leaders at Israeli-founded businesses working across waste-to-value, environmental technology and services to share experience, learn from peers, explore opportunities and support each other's growth.</span>
+        <span class="he">פורום אקו-וליו מפגיש מנהלים מחברות ישראליות הפועלות בתחומי פסולת-למשאב, טכנולוגיות שירותים וסביבה כדי לשתף ניסיון, ללמוד מעמיתים, לחקור הזדמנויות ולתמוך בצמיחה משותפת.</span>
       </p>
 
-
       <div class="who-grid">
-
         <div class="who-card">
-          <h3>Technology</h3>
+          <h3>
+            <span class="en">Technology</span>
+            <span class="he">טכנולוגיה</span>
+          </h3>
           <p>
-            Startups, innovators, engineers and technology developers.
+            <span class="en">Startups, innovators, engineers and technology developers.</span>
+            <span class="he">סטארטאפים, יזמים טכנולוגיים, מהנדסים ומפתחי פתרונות.</span>
           </p>
         </div>
 
         <div class="who-card">
-          <h3>Industry</h3>
+          <h3>
+            <span class="en">Industry</span>
+            <span class="he">תעשייה</span>
+          </h3>
           <p>
-            Companies that generate, process, purchase or can benefit from
-            recovered resources.
+            <span class="en">Companies that generate, process, purchase or can benefit from recovered resources.</span>
+            <span class="he">חברות שמייצרות, מעבדות, רוכשות או יכולות להפיק תועלת ממשאבים שהושבו.</span>
           </p>
         </div>
 
         <div class="who-card">
-          <h3>Business</h3>
+          <h3>
+            <span class="en">Business</span>
+            <span class="he">עסקים</span>
+          </h3>
           <p>
-            Entrepreneurs, operators and commercial leaders building
-            environmental businesses.
+            <span class="en">Entrepreneurs, operators and commercial leaders building environmental businesses.</span>
+            <span class="he">יזמים, מנהלים ואנשי פיתוח עסקי הבונים חברות בתחום הסביבה.</span>
           </p>
         </div>
 
         <div class="who-card">
-          <h3>Policy</h3>
+          <h3>
+            <span class="en">Policy</span>
+            <span class="he">מדיניות</span>
+          </h3>
           <p>
-            Government, municipalities, regulators and others shaping the
-            markets in which these solutions operate.
+            <span class="en">Government, municipalities, regulators and others shaping the markets in which these solutions operate.</span>
+            <span class="he">גורמי ממשל, רשויות מקומיות, רגולטורים ומעצבי שוק התורמים ליצירת סביבת העבודה.</span>
           </p>
         </div>
-
       </div>
 
     </div>
@@ -812,27 +902,26 @@ Here is the final, complete code. As requested, I left your design, colors, and 
     <div class="container">
 
       <div class="eyebrow">
-        Upcoming Events
+        <span class="en">Upcoming Events</span>
+        <span class="he">אירועים קרובים</span>
       </div>
 
       <h2>
-        September 23, 2026
+        <span class="en">September 23, 2026</span>
+        <span class="he">23 בספטמבר, 2026</span>
       </h2>
 
       <div class="event-card">
-
         <div class="event-date">
-          September 23, 2026 · Hybrid · Israel + Virtual
+          <span class="en">September 23, 2026 · Hybrid · Israel + Virtual</span>
+          <span class="he">23 בספטמבר, 2026 · היברידי · ישראל + וירטואלי</span>
         </div>
 
-        <h3>
-          EcoValue Forum
-        </h3>
+        <h3>EcoValue Forum</h3>
 
         <p>
-          A hybrid in-person and virtual event for companies and leaders
-          working in environmentally-focused businesses to share experiences, 
-          discuss challenges and opportunities, and learn from each other.
+          <span class="en">A hybrid in-person and virtual event for companies and leaders working in environmentally-focused businesses to share experiences, discuss challenges and opportunities, and learn from each other.</span>
+          <span class="he">אירוע היברידי (פרונטלי ווירטואלי) המיועד לחברות ולמנהלים הפועלים בעסקים ממוקדי-סביבה, כדי לשתף חוויות, לדון באתגרים ובהזדמנויות, וללמוד זה מזה.</span>
         </p>
 
         <a
@@ -841,9 +930,9 @@ Here is the final, complete code. As requested, I left your design, colors, and 
           data-luma-action="checkout"
           data-luma-event-id="evt-gbevuhx3TnWxrGX"
         >
-          Request an Invitation →
+          <span class="en">Request an Invitation →</span>
+          <span class="he">בקשת הזמנה ←</span>
         </a>
-
       </div>
 
     </div>
@@ -856,17 +945,18 @@ Here is the final, complete code. As requested, I left your design, colors, and 
     <div class="container">
 
       <div class="eyebrow">
-        Join the Community
+        <span class="en">Join the Community</span>
+        <span class="he">הצטרפו לקהילה</span>
       </div>
 
       <h2>
-        Stay connected to the
-        EcoValue Forum
+        <span class="en">Stay connected to the EcoValue Forum</span>
+        <span class="he">הישארו מחוברים לפורום אקו-וליו</span>
       </h2>
 
       <p class="join-intro">
-        Can't make the September event? Join the Forum to hear about future
-        gatherings, opportunities and developments across the community.
+        <span class="en">Can't make the September event? Join the Forum to hear about future gatherings, opportunities and developments across the community.</span>
+        <span class="he">לא יכולים להגיע לאירוע בספטמבר? הצטרפו לפורום כדי לשמוע על מפגשים עתידיים, הזדמנויות והתפתחויות ברחבי הקהילה.</span>
       </p>
       
       <form
@@ -874,72 +964,44 @@ Here is the final, complete code. As requested, I left your design, colors, and 
         action="https://formsubmit.co/71c373bd4746247d218c865f0eb6e64d"
         method="POST"
       >
-
-        <!-- Redirects to your custom thank you page -->
-        <input
-          type="hidden"
-          name="_next"
-          value="https://ecovalueforum.com/thank-you.html"
-        >
-
-        <input
-          type="hidden"
-          name="_subject"
-          value="New EcoValue Forum Member"
-        >
-
-        <input
-          type="hidden"
-          name="_template"
-          value="table"
-        >
-
-        <!-- Honeypot anti-spam field -->
-        <input
-          type="text"
-          name="_honey"
-          tabindex="-1"
-          autocomplete="off"
-          style="display:none"
-        >
+        <input type="hidden" name="_next" value="https://ecovalueforum.com/thank-you.html">
+        <input type="hidden" name="_subject" value="New EcoValue Forum Member">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
 
         <div class="form-row">
           <div class="field">
-            <label for="name">Name *</label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              required
-              autocomplete="name"
-            >
+            <label for="name">
+              <span class="en">Name *</span>
+              <span class="he">שם *</span>
+            </label>
+            <input id="name" type="text" name="name" required autocomplete="name">
           </div>
 
           <div class="field">
-            <label for="email">Email *</label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              required
-              autocomplete="email"
-            >
+            <label for="email">
+              <span class="en">Email *</span>
+              <span class="he">אימייל *</span>
+            </label>
+            <input id="email" type="email" name="email" required autocomplete="email">
           </div>
         </div>
 
         <div class="form-row">
           <div class="field">
-            <label for="organization">Organization</label>
-            <input
-              id="organization"
-              type="text"
-              name="organization"
-              autocomplete="organization"
-            >
+            <label for="organization">
+              <span class="en">Organization</span>
+              <span class="he">ארגון / חברה</span>
+            </label>
+            <input id="organization" type="text" name="organization" autocomplete="organization">
           </div>
 
           <div class="field">
-            <label for="role">Role / Area</label>
+            <label for="role">
+              <span class="en">Role / Area</span>
+              <span class="he">תפקיד / תחום</span>
+            </label>
+            <!-- Options text updated dynamically by JS based on language to support <select> element constraints -->
             <select id="role" name="role">
               <option value="">Please select</option>
               <option value="Technology / Startup">Technology / Startup</option>
@@ -954,20 +1016,22 @@ Here is the final, complete code. As requested, I left your design, colors, and 
         </div>
 
         <div class="field">
-          <label for="interest">What brings you to EcoValue?</label>
-          <textarea
-            id="interest"
-            name="interest"
-            placeholder="Tell us briefly about your work or interest."
-          ></textarea>
+          <label for="interest">
+            <span class="en">What brings you to EcoValue?</span>
+            <span class="he">מה מביא אתכם לאקו-וליו?</span>
+          </label>
+          <!-- Placeholder updated dynamically by JS -->
+          <textarea id="interest" name="interest" placeholder="Tell us briefly about your work or interest."></textarea>
         </div>
 
         <button class="submit" type="submit">
-          Join the Forum →
+          <span class="en">Join the Forum →</span>
+          <span class="he">הצטרפו לפורום ←</span>
         </button>
 
         <p class="privacy-note">
-          Your information will only be used to contact you about EcoValue Forum activities.
+          <span class="en">Your information will only be used to contact you about EcoValue Forum activities.</span>
+          <span class="he">הפרטים שלכם ישמשו אך ורק ליצירת קשר בנוגע לפעילויות פורום אקו-וליו.</span>
         </p>
 
       </form>
@@ -984,11 +1048,13 @@ Here is the final, complete code. As requested, I left your design, colors, and 
   <div class="container footer-inner">
 
     <div>
-      © 2026 EcoValue Forum · Israel
+      <span class="en">© 2026 EcoValue Forum · Israel</span>
+      <span class="he">© 2026 אקו-וליו פורום · ישראל</span>
     </div>
 
     <div>
-      Environmental value through economic value.
+      <span class="en">Environmental value through economic value.</span>
+      <span class="he">ערך סביבתי דרך ערך כלכלי.</span>
     </div>
 
   </div>
@@ -996,34 +1062,91 @@ Here is the final, complete code. As requested, I left your design, colors, and 
 
 
 <!-- LUMA -->
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
 
-<script
-  id="luma-checkout"
-  src="https://embed.lu.ma/checkout-button.js">
-</script>
 
-<!-- MOBILE MENU SCRIPT -->
+<!-- UI LOGIC & MOBILE MENU SCRIPT -->
 <script>
+  // Mobile Menu Logic
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   const nav = document.getElementById('main-nav');
 
-  // Toggle menu on button click
   mobileToggle.addEventListener('click', () => {
     nav.classList.toggle('is-open');
     const isExpanded = nav.classList.contains('is-open');
     mobileToggle.setAttribute('aria-expanded', isExpanded);
   });
 
-  // Close menu when a navigation link is clicked
   document.querySelectorAll('#main-nav a').forEach(link => {
     link.addEventListener('click', () => {
       nav.classList.remove('is-open');
       mobileToggle.setAttribute('aria-expanded', 'false');
     });
   });
+
+  // Language Toggle Logic
+  function updateUIElements(lang) {
+    const isHe = lang === 'he';
+    
+    // Update Button Text
+    const langBtn = document.getElementById('lang-btn');
+    if (langBtn) langBtn.textContent = isHe ? 'English' : 'עברית';
+
+    // Update Form Placeholder
+    const textArea = document.getElementById('interest');
+    if (textArea) {
+      textArea.placeholder = isHe 
+        ? "ספרו לנו בקצרה על העשייה שלכם." 
+        : "Tell us briefly about your work or interest.";
+    }
+
+    // Update Select Options (since <option> elements cannot safely contain spans)
+    const roleSelect = document.getElementById('role');
+    if (roleSelect) {
+      if (isHe) {
+        roleSelect.options[0].text = "בחרו אפשרות";
+        roleSelect.options[1].text = "טכנולוגיה / סטארטאפ";
+        roleSelect.options[2].text = "תעשייה";
+        roleSelect.options[3].text = "יזמות / עסקים";
+        roleSelect.options[4].text = "השקעות";
+        roleSelect.options[5].text = "ממשלה / מדיניות";
+        roleSelect.options[6].text = "מחקר / אקדמיה";
+        roleSelect.options[7].text = "אחר";
+      } else {
+        roleSelect.options[0].text = "Please select";
+        roleSelect.options[1].text = "Technology / Startup";
+        roleSelect.options[2].text = "Industry";
+        roleSelect.options[3].text = "Entrepreneur / Business";
+        roleSelect.options[4].text = "Investor";
+        roleSelect.options[5].text = "Government / Policy";
+        roleSelect.options[6].text = "Research / Academia";
+        roleSelect.options[7].text = "Other";
+      }
+    }
+  }
+
+  function toggleLanguage() {
+    const html = document.documentElement;
+    const currentLang = html.getAttribute('lang');
+    const newLang = currentLang === 'en' ? 'he' : 'en';
+    const newDir = newLang === 'he' ? 'rtl' : 'ltr';
+
+    html.setAttribute('lang', newLang);
+    html.setAttribute('dir', newDir);
+    
+    // Save to local storage
+    localStorage.setItem('ecoValueLang', newLang);
+    
+    // Update dynamic text
+    updateUIElements(newLang);
+  }
+
+  // Set correct UI elements on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'en';
+    updateUIElements(currentLang);
+  });
 </script>
 
 </body>
 </html>
-
-```
