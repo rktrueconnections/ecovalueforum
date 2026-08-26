@@ -71,20 +71,19 @@
     })();
   </script>
 
-  
   <style>
     :root {
-  --ink: #18352d;
-  --muted: #61736b;
-  --soft: #eef2ed;
-  --cream: #f7f8f4;
-  --white: #ffffff;
-  --line: #dfe6e0;
+      --ink: #18352d;
+      --muted: #61736b;
+      --soft: #eef2ed;
+      --cream: #f7f8f4;
+      --white: #ffffff;
+      --line: #dfe6e0;
 
-  /* Vibrant environmental accent */
-  --accent: #2A9D78;
-  --accent-dark: #217A5F;
-}
+      /* Vibrant environmental accent */
+      --accent: #2A9D78;
+      --accent-dark: #217A5F;
+    }
 
     * {
       box-sizing: border-box;
@@ -143,15 +142,15 @@
     }
 
     .brand {
+      display: flex;
+      align-items: center;
       text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 750;
-      letter-spacing: -0.03em;
     }
 
-    .brand span {
-      font-weight: 400;
-      color: var(--muted);
+    .brand img {
+      display: block;
+      height: 42px;
+      width: auto;
     }
 
     .nav-controls {
@@ -608,7 +607,7 @@
   <div class="nav">
 
     <a class="brand" href="#">
-      EcoValue <span>Forum</span>
+      <img src="/logo.png" alt="EcoValue Forum">
     </a>
 
     <nav id="main-nav">
@@ -972,7 +971,6 @@
   </section>
 
 
-  ```html
   <!-- UPCOMING EVENTS -->
 
   <section id="events" class="white">
@@ -1014,6 +1012,7 @@
 
     </div>
   </section>
+
 
   <!-- JOIN -->
 
