@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -6,27 +7,33 @@
 
   <title>EcoValue Forum | Israeli Waste-to-Value (W2V) Community</title>
 
-  <meta name="description" content="EcoValue Forum is a community for leaders at Israeli-founded companies in environmental businesses and technologies, focused on commercial growth, scale and shared learning.">
+  <meta
+    name="description"
+    content="EcoValue Forum is a community for leaders at Israeli-founded companies in environmental businesses and technologies, focused on commercial growth, scale and shared learning."
+  >
 
-  <!-- SEO & Canonical Link -->
   <link rel="canonical" href="https://ecovalueforum.com/">
 
-  <!-- Social Sharing (Open Graph / LinkedIn / WhatsApp) -->
   <meta property="og:url" content="https://ecovalueforum.com/">
   <meta property="og:title" content="EcoValue Forum | Israeli W2V Community">
-  <meta property="og:description" content="A community for leaders at Israeli-founded environmental businesses and technologies focused on commercial growth and scale.">
+  <meta
+    property="og:description"
+    content="A community for leaders at Israeli-founded environmental businesses and technologies focused on commercial growth and scale."
+  >
   <meta property="og:type" content="website">
-  
-  <!-- Automatically generated image: Dark green background, white text -->
+  <meta property="og:locale" content="en_IL">
   <meta property="og:image" content="https://ecovalueforum.com/og-image.png">
+  <meta property="og:image:alt" content="EcoValue Forum | Israeli W2V Community">
 
-  <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="EcoValue Forum | Israeli W2V Community">
-  <meta name="twitter:description" content="A community for leaders at Israeli-founded environmental businesses and technologies focused on commercial growth and scale.">
+  <meta
+    name="twitter:description"
+    content="A community for leaders at Israeli-founded environmental businesses and technologies focused on commercial growth and scale."
+  >
   <meta name="twitter:image" content="https://ecovalueforum.com/og-image.png">
+  <meta name="twitter:image:alt" content="EcoValue Forum | Israeli W2V Community">
 
-  <!-- AI Discoverability Script -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -47,15 +54,21 @@
   }
   </script>
 
-  <!-- LANGUAGE PREFERENCE SCRIPT (Runs early to prevent UI flashing) -->
   <script>
     (function() {
       const params = new URLSearchParams(window.location.search);
       const urlLang = params.get('lang');
       const savedLang = localStorage.getItem('ecoValueLang');
-      const activeLang = urlLang === 'he' || (!urlLang && savedLang === 'he') ? 'he' : 'en';
+      const activeLang =
+        urlLang === 'he' || (!urlLang && savedLang === 'he')
+          ? 'he'
+          : 'en';
+
       document.documentElement.setAttribute('lang', activeLang);
-      document.documentElement.setAttribute('dir', activeLang === 'he' ? 'rtl' : 'ltr');
+      document.documentElement.setAttribute(
+        'dir',
+        activeLang === 'he' ? 'rtl' : 'ltr'
+      );
     })();
   </script>
 
@@ -67,15 +80,19 @@
       --cream: #f7f8f4;
       --white: #ffffff;
       --line: #dfe6e0;
-      --accent: #557d6d;
-      --accent-dark: #3e6254;
+
+      /* More visible accent color */
+      --accent: #b56b45;
+      --accent-dark: #8f5134;
+
+      --green-accent: #557d6d;
+      --green-accent-dark: #3e6254;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    /* Accessibility: Visible focus outline for keyboard navigation */
     *:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
@@ -83,10 +100,9 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 90px; 
+      scroll-padding-top: 90px;
     }
 
-    /* LANGUAGE DISPLAY LOGIC */
     html[lang="en"] .he { display: none !important; }
     html[lang="he"] .en { display: none !important; }
 
@@ -149,7 +165,6 @@
 
     nav a {
       text-decoration: none;
-      /* Logical property instead of margin-left ensures it adapts to LTR/RTL automatically */
       margin-inline-start: 30px;
       color: #4b6158;
       font-size: 0.92rem;
@@ -252,7 +267,6 @@
         var(--cream);
     }
 
-    /* RTL specific background override for visual balance */
     html[dir="rtl"] .hero {
       background:
         radial-gradient(
@@ -308,7 +322,7 @@
       opacity: 0.86;
     }
 
-    /* THESIS */
+    /* COMMUNITY THESIS */
 
     .white {
       background: var(--white);
@@ -326,7 +340,7 @@
     }
 
     .thesis-text strong {
-      color: var(--accent-dark);
+      color: var(--green-accent-dark);
     }
 
     /* PRINCIPLES */
@@ -375,7 +389,7 @@
       border-top: 1px solid var(--line);
     }
 
-    /* WHO */
+    /* WHO / COMMUNITY */
 
     .who-grid {
       display: grid;
@@ -433,7 +447,7 @@
     }
 
     .join .eyebrow {
-      color: #a7c1b5;
+      color: #d9a98e;
     }
 
     .join h2 {
@@ -481,7 +495,7 @@
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: #b8cec3;
+      border-color: #d9a98e;
     }
 
     textarea {
@@ -540,7 +554,7 @@
       .nav-controls {
         gap: 15px;
       }
-      
+
       nav {
         display: none;
         position: absolute;
@@ -593,12 +607,9 @@
 
 <body>
 
-<!-- NAVIGATION -->
-
 <header>
   <div class="nav">
 
-    <!-- Kept brand name standard for both languages -->
     <a class="brand" href="#">
       EcoValue <span>Forum</span>
     </a>
@@ -627,13 +638,15 @@
     </nav>
 
     <div class="nav-controls">
-      <!-- Language Switcher -->
-      <button class="lang-toggle" onclick="toggleLanguage()" id="lang-btn">
-        <!-- Text injected by JS on load -->
-      </button>
+      <button class="lang-toggle" onclick="toggleLanguage()" id="lang-btn"></button>
 
-      <!-- Hamburger Menu Toggle Button -->
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation" data-en-label="Toggle navigation" data-he-label="פתיחת תפריט ניווט" aria-expanded="false">
+      <button
+        class="mobile-menu-toggle"
+        aria-label="Toggle navigation"
+        data-en-label="Toggle navigation"
+        data-he-label="פתיחת תפריט ניווט"
+        aria-expanded="false"
+      >
         ☰
       </button>
     </div>
@@ -660,13 +673,21 @@
       </h1>
 
       <p class="lead">
-        <span class="en">For leaders at Israeli-founded companies who understand that achieving real growth and scale in environmental businesses and technologies requires a compelling commercial case.</span>
-        <span class="he">למנהלים ויזמים בחברות ישראליות שמבינים שהצלחה מסחרית היא המפתח לצמיחה ולהתרחבות של פתרונות סביבתיים.</span>
+        <span class="en">
+          For leaders at Israeli-founded companies who understand that achieving real growth and scale in environmental businesses and technologies requires a compelling commercial case.
+        </span>
+        <span class="he">
+          למנהלים ויזמים בחברות ישראליות שמבינים שהצלחה מסחרית היא המפתח לצמיחה ולהתרחבות של פתרונות סביבתיים.
+        </span>
       </p>
 
       <p class="lead">
-        <span class="en">Share experience. Learn from peers. Explore opportunities. Support each other's growth.</span>
-        <span class="he">לשתף ניסיון. ללמוד מעמיתים. לבחון הזדמנויות. לתמוך בצמיחה משותפת.</span>
+        <span class="en">
+          Share experience. Learn from peers. Explore opportunities. Support each other's growth.
+        </span>
+        <span class="he">
+          לשתף ניסיון. ללמוד מעמיתים. לבחון הזדמנויות. לתמוך בצמיחה משותפת.
+        </span>
       </p>
 
       <div class="hero-buttons">
@@ -674,9 +695,9 @@
           <span class="en">See Upcoming Events →</span>
           <span class="he">צפו באירועים קרובים ←</span>
         </a>
-        <a class="button button-secondary" href="#why">
-          <span class="en">Our approach</span>
-          <span class="he">הגישה שלנו</span>
+        <a class="button button-secondary" href="#community">
+          <span class="en">Meet the Community</span>
+          <span class="he">הכירו את הקהילה</span>
         </a>
       </div>
 
@@ -684,20 +705,35 @@
   </section>
 
 
-  <!-- THESIS -->
+  <!-- WHY / SHARED BELIEF -->
 
   <section id="why" class="white">
     <div class="container">
 
       <div class="thesis">
         <div class="eyebrow">
-          <span class="en">About EcoValue</span>
-          <span class="he">על אקו-וליו</span>
+          <span class="en">About EcoValue Forum</span>
+          <span class="he">על פורום אקו-וליו</span>
         </div>
 
         <p class="thesis-text">
-          <span class="en">The most scalable solutions are those that create <strong>economic value while solving environmental problems.</strong></span>
-          <span class="he">הפתרונות עם פוטנציאל הצמיחה הגדול ביותר הם אלו שיוצרים <strong>ערך כלכלי תוך פתרון בעיות סביבתיות.</strong></span>
+          <span class="en">
+            We believe the most scalable environmental solutions are those that create
+            <strong>economic value while solving environmental problems.</strong>
+          </span>
+          <span class="he">
+            אנחנו מאמינים שהפתרונות הסביבתיים עם פוטנציאל הצמיחה הגדול ביותר הם אלו שיוצרים
+            <strong>ערך כלכלי תוך פתרון בעיות סביבתיות.</strong>
+          </span>
+        </p>
+
+        <p class="lead">
+          <span class="en">
+            EcoValue Forum brings together people who are building, operating and shaping these businesses — creating a space to learn from one another and help move the sector forward.
+          </span>
+          <span class="he">
+            פורום אקו-וליו מפגיש אנשים שבונים, מנהלים ומעצבים את התחום — ויוצר מרחב ללמידה הדדית, לשיתוף ניסיון ולקידום התחום יחד.
+          </span>
         </p>
       </div>
 
@@ -705,19 +741,19 @@
   </section>
 
 
-  <!-- PRINCIPLES -->
+  <!-- PRINCIPLES / WHAT MEMBERS SHARE -->
 
   <section>
     <div class="container">
 
       <div class="eyebrow">
-        <span class="en">What we believe</span>
-        <span class="he">במה אנחנו מאמינים</span>
+        <span class="en">What brings us together</span>
+        <span class="he">מה מחבר בינינו</span>
       </div>
 
       <h2>
-        <span class="en">Make the solution<br>the profitable choice.</span>
-        <span class="he">להפוך את הפתרון<br>לבחירה הרווחית.</span>
+        <span class="en">Shared challenges.<br>Shared opportunity.</span>
+        <span class="he">אתגרים משותפים.<br>הזדמנויות משותפות.</span>
       </h2>
 
       <div class="principles">
@@ -725,36 +761,48 @@
         <div class="principle">
           <div class="principle-number">01</div>
           <h3>
-            <span class="en">Profit drives scale.</span>
-            <span class="he">רווחיות מניעה צמיחה.</span>
+            <span class="en">Commercial growth</span>
+            <span class="he">צמיחה מסחרית</span>
           </h3>
           <p>
-            <span class="en">When solving an environmental problem creates a viable business, the solution can attract customers, entrepreneurs and investment and grow far beyond a pilot.</span>
-            <span class="he">כאשר פתרון לבעיה סביבתית יוצר עסק בעל היתכנות מסחרית, הוא יכול למשוך לקוחות, יזמים והשקעות — ולצמוח הרבה מעבר לשלב הפיילוט.</span>
+            <span class="en">
+              Building an environmental business requires more than a strong technology. We share experience around customers, markets, sales and scaling.
+            </span>
+            <span class="he">
+              בניית עסק בתחום הסביבה דורשת יותר מטכנולוגיה טובה. אנחנו משתפים ניסיון סביב לקוחות, שווקים, מכירות וצמיחה.
+            </span>
           </p>
         </div>
 
         <div class="principle">
           <div class="principle-number">02</div>
           <h3>
-            <span class="en">Waste can become value.</span>
-            <span class="he">פסולת יכולה להפוך לערך.</span>
+            <span class="en">Waste into value</span>
+            <span class="he">מפסולת לערך</span>
           </h3>
           <p>
-            <span class="en">Materials, energy and resources currently treated as waste can become inputs, products and new sources of economic value.</span>
-            <span class="he">חומרים, אנרגיה ומשאבים שמתייחסים אליהם כיום כפסולת, יכולים להפוך לתשומות, למוצרים ולמקורות חדשים של ערך כלכלי.</span>
+            <span class="en">
+              Materials, energy and resources currently treated as waste can become inputs, products and new sources of economic value.
+            </span>
+            <span class="he">
+              חומרים, אנרגיה ומשאבים שמתייחסים אליהם כיום כפסולת יכולים להפוך לתשומות, למוצרים ולמקורות חדשים של ערך כלכלי.
+            </span>
           </p>
         </div>
 
         <div class="principle">
           <div class="principle-number">03</div>
           <h3>
-            <span class="en">Technology enables the transition.</span>
-            <span class="he">טכנולוגיה מאפשרת את המעבר.</span>
+            <span class="en">Learning from peers</span>
+            <span class="he">לומדים מעמיתים</span>
           </h3>
           <p>
-            <span class="en">Israeli technology and entrepreneurship can turn environmental challenges into commercially viable businesses and solutions.</span>
-            <span class="he">טכנולוגיה ויזמות ישראלית יכולות להפוך אתגרים סביבתיים לפתרונות ולעסקים בעלי ערך מסחרי.</span>
+            <span class="en">
+              The people building these businesses face many of the same challenges. Sharing what works — and what doesn't — helps everyone move faster.
+            </span>
+            <span class="he">
+              האנשים שבונים את החברות האלה מתמודדים עם רבים מאותם אתגרים. שיתוף במה שעובד — וגם במה שלא — עוזר לכולם להתקדם מהר יותר.
+            </span>
           </p>
         </div>
 
@@ -770,18 +818,25 @@
     <div class="container">
 
       <div class="focus-grid">
+
         <div>
           <div class="eyebrow">
             <span class="en">Initial focus</span>
             <span class="he">מיקוד ראשוני</span>
           </div>
+
           <h2>
             <span class="en">From waste<br>to value.</span>
             <span class="he">מפסולת<br>לערך.</span>
           </h2>
+
           <p class="lead">
-            <span class="en">EcoValue initially focuses on waste-to-value businesses, while creating a platform that can expand into the broader environmental technology and services ecosystem.</span>
-            <span class="he">אקו-וליו מתמקדת תחילה בעסקי פסולת-למשאב (Waste-to-Value), תוך יצירת פלטפורמה שתוכל להתרחב לאקוסיסטם הרחב יותר של טכנולוגיות ושירותי סביבה.</span>
+            <span class="en">
+              EcoValue Forum initially focuses on bringing together waste-to-value businesses, while creating a community that can expand into the broader environmental technology and services ecosystem.
+            </span>
+            <span class="he">
+              פורום אקו-וליו מתמקד תחילה בחיבור בין עסקים בתחום פסולת-למשאב (Waste-to-Value), תוך יצירת קהילה שתוכל להתרחב לאקוסיסטם הרחב יותר של טכנולוגיות ושירותי סביבה.
+            </span>
           </p>
         </div>
 
@@ -821,6 +876,7 @@
             </li>
           </ul>
         </div>
+
       </div>
 
     </div>
@@ -833,29 +889,38 @@
     <div class="container">
 
       <div class="eyebrow">
-        <span class="en">The ecosystem</span>
-        <span class="he">האקוסיסטם</span>
+        <span class="en">The community</span>
+        <span class="he">הקהילה</span>
       </div>
 
       <h2>
         <span class="en">Bringing the right<br>people together.</span>
-        <span class="he">מחברים את האנשים<br>הנכונים.</span>
+        <span class="he">מחברים בין<br>האנשים הנכונים.</span>
       </h2>
 
       <p class="lead">
-        <span class="en">EcoValue Forum brings together leaders at Israeli-founded businesses working across waste-to-value, environmental technology and services to share experience, learn from peers, explore opportunities and support each other's growth.</span>
-        <span class="he">פורום אקו-וליו מפגיש מנהלים מחברות ישראליות הפועלות בתחומי פסולת-למשאב, טכנולוגיות ושירותים סביבתיים כדי לשתף ניסיון, ללמוד מעמיתים, לבחון הזדמנויות ולתמוך בצמיחה משותפת.</span>
+        <span class="en">
+          EcoValue Forum brings together leaders at Israeli-founded businesses working across waste-to-value, environmental technology and services to share experience, learn from peers, explore opportunities and support each other's growth.
+        </span>
+        <span class="he">
+          פורום אקו-וליו מפגיש מנהלים מחברות ישראליות הפועלות בתחומי פסולת-למשאב, טכנולוגיות ושירותים סביבתיים כדי לשתף ניסיון, ללמוד מעמיתים, לבחון הזדמנויות ולתמוך בצמיחה משותפת.
+        </span>
       </p>
 
       <div class="who-grid">
+
         <div class="who-card">
           <h3>
             <span class="en">Technology</span>
             <span class="he">טכנולוגיה</span>
           </h3>
           <p>
-            <span class="en">Startups, innovators, engineers and technology developers.</span>
-            <span class="he">סטארטאפים, יזמים טכנולוגיים, מהנדסים ומפתחי פתרונות.</span>
+            <span class="en">
+              Startups, innovators, engineers and technology developers.
+            </span>
+            <span class="he">
+              סטארטאפים, יזמים טכנולוגיים, מהנדסים ומפתחי פתרונות.
+            </span>
           </p>
         </div>
 
@@ -865,8 +930,12 @@
             <span class="he">תעשייה</span>
           </h3>
           <p>
-            <span class="en">Companies that generate, process, purchase or can benefit from recovered resources.</span>
-            <span class="he">חברות שמייצרות, מעבדות או רוכשות חומרים ומשאבים שניתן להשיב, למחזר או לעשות בהם שימוש חוזר.</span>
+            <span class="en">
+              Companies that generate, process, purchase or can benefit from recovered resources.
+            </span>
+            <span class="he">
+              חברות שמייצרות, מעבדות או רוכשות חומרים ומשאבים שניתן להשיב, למחזר או לעשות בהם שימוש חוזר.
+            </span>
           </p>
         </div>
 
@@ -876,8 +945,12 @@
             <span class="he">עסקים</span>
           </h3>
           <p>
-            <span class="en">Entrepreneurs, operators and commercial leaders building environmental businesses.</span>
-            <span class="he">יזמים, מנהלים ואנשי פיתוח עסקי הבונים חברות בתחום הסביבה.</span>
+            <span class="en">
+              Entrepreneurs, operators and commercial leaders building environmental businesses.
+            </span>
+            <span class="he">
+              יזמים, מנהלים ואנשי פיתוח עסקי הבונים חברות בתחום הסביבה.
+            </span>
           </p>
         </div>
 
@@ -887,10 +960,15 @@
             <span class="he">מדיניות</span>
           </h3>
           <p>
-            <span class="en">Government, municipalities, regulators and others shaping the markets in which these solutions operate.</span>
-            <span class="he">גורמי ממשל, רשויות מקומיות, רגולטורים ומעצבי מדיניות המשפיעים על השווקים שבהם הפתרונות האלה פועלים.</span>
+            <span class="en">
+              Government, municipalities, regulators and others shaping the markets in which these solutions operate.
+            </span>
+            <span class="he">
+              גורמי ממשל, רשויות מקומיות, רגולטורים ומעצבי מדיניות המשפיעים על השווקים שבהם הפתרונות האלה פועלים.
+            </span>
           </p>
         </div>
+
       </div>
 
     </div>
@@ -913,6 +991,7 @@
       </h2>
 
       <div class="event-card">
+
         <div class="event-date">
           <span class="en">September 23, 2026 · Hybrid · Israel + Virtual</span>
           <span class="he">23 בספטמבר, 2026 · היברידי · ישראל + וירטואלי</span>
@@ -921,8 +1000,12 @@
         <h3>EcoValue Forum</h3>
 
         <p>
-          <span class="en">A hybrid in-person and virtual event for companies and leaders working in environmentally-focused businesses to share experiences, discuss challenges and opportunities, and learn from each other.</span>
-          <span class="he">אירוע היברידי המיועד לחברות ולמנהלים הפועלים בעסקים בתחום הסביבה, כדי לשתף ניסיון, לדון באתגרים ובהזדמנויות וללמוד זה מזה.</span>
+          <span class="en">
+            A hybrid in-person and virtual event for companies and leaders working in environmentally-focused businesses to share experiences, discuss challenges and opportunities, and learn from each other.
+          </span>
+          <span class="he">
+            אירוע היברידי המיועד לחברות ולמנהלים הפועלים בעסקים בתחום הסביבה, כדי לשתף ניסיון, לדון באתגרים ובהזדמנויות וללמוד זה מזה.
+          </span>
         </p>
 
         <a
@@ -934,6 +1017,7 @@
           <span class="en">Request an Invitation →</span>
           <span class="he">בקשת הזמנה ←</span>
         </a>
+
       </div>
 
     </div>
@@ -956,21 +1040,27 @@
       </h2>
 
       <p class="join-intro">
-        <span class="en">Can't make the September event? Join the Forum to hear about future gatherings, opportunities and developments across the community.</span>
-        <span class="he">לא יכולים להגיע לאירוע בספטמבר? הצטרפו לפורום כדי לשמוע על מפגשים עתידיים, הזדמנויות והתפתחויות ברחבי הקהילה.</span>
+        <span class="en">
+          Can't make the September event? Join the Forum to hear about future gatherings, opportunities and developments across the community.
+        </span>
+        <span class="he">
+          לא יכולים להגיע לאירוע בספטמבר? הצטרפו לפורום כדי לשמוע על מפגשים עתידיים, הזדמנויות והתפתחויות ברחבי הקהילה.
+        </span>
       </p>
-      
+
       <form
         class="form"
         action="https://formsubmit.co/71c373bd4746247d218c865f0eb6e64d"
         method="POST"
       >
+
         <input type="hidden" name="_next" value="https://ecovalueforum.com/thank-you.html">
         <input type="hidden" name="_subject" value="New EcoValue Forum Member">
         <input type="hidden" name="_template" value="table">
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
 
         <div class="form-row">
+
           <div class="field">
             <label for="name">
               <span class="en">Name *</span>
@@ -986,9 +1076,11 @@
             </label>
             <input id="email" type="email" name="email" required autocomplete="email">
           </div>
+
         </div>
 
         <div class="form-row">
+
           <div class="field">
             <label for="organization">
               <span class="en">Organization</span>
@@ -1002,7 +1094,7 @@
               <span class="en">Role / Area</span>
               <span class="he">תפקיד / תחום</span>
             </label>
-            <!-- Options text updated dynamically by JS based on language to support <select> element constraints -->
+
             <select id="role" name="role">
               <option value="">Please select</option>
               <option value="Technology / Startup">Technology / Startup</option>
@@ -1014,15 +1106,22 @@
               <option value="Other">Other</option>
             </select>
           </div>
+
         </div>
 
         <div class="field">
+
           <label for="interest">
-            <span class="en">What brings you to EcoValue?</span>
+            <span class="en">What brings you to EcoValue Forum?</span>
             <span class="he">מה מביא אתכם לפורום אקו-וליו?</span>
           </label>
-          <!-- Placeholder updated dynamically by JS -->
-          <textarea id="interest" name="interest" placeholder="Tell us briefly about your work or interest."></textarea>
+
+          <textarea
+            id="interest"
+            name="interest"
+            placeholder="Tell us briefly about your work or interest."
+          ></textarea>
+
         </div>
 
         <button class="submit" type="submit">
@@ -1031,8 +1130,12 @@
         </button>
 
         <p class="privacy-note">
-          <span class="en">Your information will only be used to contact you about EcoValue Forum activities.</span>
-          <span class="he">הפרטים שלכם ישמשו אך ורק ליצירת קשר בנוגע לפעילויות פורום אקו-וליו.</span>
+          <span class="en">
+            Your information will only be used to contact you about EcoValue Forum activities.
+          </span>
+          <span class="he">
+            הפרטים שלכם ישמשו אך ורק ליצירת קשר בנוגע לפעילויות פורום אקו-וליו.
+          </span>
         </p>
 
       </form>
@@ -1043,14 +1146,12 @@
 </main>
 
 
-<!-- FOOTER -->
-
 <footer>
   <div class="container footer-inner">
 
     <div>
       <span class="en">© 2026 EcoValue Forum · Israel</span>
-      <span class="he">© 2026 אקו-וליו פורום · ישראל</span>
+      <span class="he">© 2026 פורום אקו-וליו · ישראל</span>
     </div>
 
     <div>
@@ -1062,13 +1163,13 @@
 </footer>
 
 
-<!-- LUMA -->
 <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
 
 
-<!-- UI LOGIC & MOBILE MENU SCRIPT -->
 <script>
+
   // Mobile Menu Logic
+
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   const nav = document.getElementById('main-nav');
 
@@ -1085,37 +1186,46 @@
     });
   });
 
+
   // Language & URL Query Logic
+
   function updateUIElements(lang) {
+
     const isHe = lang === 'he';
-    
-    // Update Button Text
+
     const langBtn = document.getElementById('lang-btn');
+
     if (langBtn) {
       langBtn.textContent = isHe ? 'English' : 'עברית';
-      langBtn.setAttribute('aria-label', isHe ? 'Switch to English' : 'עברית');
-    }
-
-    // Update mobile navigation accessibility label
-    if (mobileToggle) {
-      mobileToggle.setAttribute(
+      langBtn.setAttribute(
         'aria-label',
-        isHe ? mobileToggle.dataset.heLabel : mobileToggle.dataset.enLabel
+        isHe ? 'Switch to English' : 'עברית'
       );
     }
 
-    // Update Form Placeholder
+    if (mobileToggle) {
+      mobileToggle.setAttribute(
+        'aria-label',
+        isHe
+          ? mobileToggle.dataset.heLabel
+          : mobileToggle.dataset.enLabel
+      );
+    }
+
     const textArea = document.getElementById('interest');
+
     if (textArea) {
-      textArea.placeholder = isHe 
-        ? "ספרו לנו בקצרה על העשייה שלכם." 
+      textArea.placeholder = isHe
+        ? "ספרו לנו בקצרה על העשייה שלכם."
         : "Tell us briefly about your work or interest.";
     }
 
-    // Update Select Options
     const roleSelect = document.getElementById('role');
+
     if (roleSelect) {
+
       if (isHe) {
+
         roleSelect.options[0].text = "בחרו אפשרות";
         roleSelect.options[1].text = "טכנולוגיה / סטארטאפ";
         roleSelect.options[2].text = "תעשייה";
@@ -1124,7 +1234,9 @@
         roleSelect.options[5].text = "ממשלה / מדיניות";
         roleSelect.options[6].text = "מחקר / אקדמיה";
         roleSelect.options[7].text = "אחר";
+
       } else {
+
         roleSelect.options[0].text = "Please select";
         roleSelect.options[1].text = "Technology / Startup";
         roleSelect.options[2].text = "Industry";
@@ -1133,51 +1245,69 @@
         roleSelect.options[5].text = "Government / Policy";
         roleSelect.options[6].text = "Research / Academia";
         roleSelect.options[7].text = "Other";
+
       }
     }
   }
 
+
   function toggleLanguage() {
+
     const html = document.documentElement;
     const currentLang = html.getAttribute('lang');
-    const newLang = currentLang === 'en' ? 'he' : 'en';
-    const newDir = newLang === 'he' ? 'rtl' : 'ltr';
+
+    const newLang =
+      currentLang === 'en'
+        ? 'he'
+        : 'en';
+
+    const newDir =
+      newLang === 'he'
+        ? 'rtl'
+        : 'ltr';
 
     html.setAttribute('lang', newLang);
     html.setAttribute('dir', newDir);
-    
-    // Update URL query parameter without reloading page
+
     const url = new URL(window.location);
+
     if (newLang === 'he') {
       url.searchParams.set('lang', 'he');
     } else {
       url.searchParams.delete('lang');
     }
+
     window.history.pushState({}, '', url);
 
-    // Save preference
     localStorage.setItem('ecoValueLang', newLang);
-    
-    // Update dynamic text
+
     updateUIElements(newLang);
   }
 
-  // Set correct UI elements and check URL on page load
+
   document.addEventListener('DOMContentLoaded', () => {
+
     const params = new URLSearchParams(window.location.search);
     const urlLang = params.get('lang');
     const savedLang = localStorage.getItem('ecoValueLang');
-    
-    const activeLang = urlLang === 'he' || (!urlLang && savedLang === 'he') ? 'he' : 'en';
-    
+
+    const activeLang =
+      urlLang === 'he' ||
+      (!urlLang && savedLang === 'he')
+        ? 'he'
+        : 'en';
+
     if (activeLang === 'he') {
       document.documentElement.setAttribute('lang', 'he');
       document.documentElement.setAttribute('dir', 'rtl');
     }
-    
+
     updateUIElements(activeLang);
+
   });
+
 </script>
 
 </body>
 </html>
+```
