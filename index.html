@@ -1,19 +1,18 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>EcoValue Forum | Waste-to-Value Israel</title>
+  <title>EcoValue Forum | Israel</title>
 
   <meta name="description"
-        content="EcoValue Forum is an Israeli community focused on waste-to-value, environmental technology, business and markets. We connect entrepreneurs, industry, investors, researchers and policymakers.">
+        content="EcoValue Forum brings together Israeli innovators, entrepreneurs, businesses, researchers and policymakers working to make environmental solutions commercially successful, scalable and valuable.">
 
-  <link rel="canonical" href="https://ecovalueforum.com/">
-
-  <meta property="og:title" content="EcoValue Forum | Waste-to-Value Israel">
+  <meta property="og:title" content="EcoValue Forum | Israel">
   <meta property="og:description"
-        content="An Israeli community connecting environmental technology, business and markets to turn waste and environmental challenges into economic value.">
+        content="Turning environmental challenges into economic opportunities.">
   <meta property="og:type" content="website">
 
   <style>
@@ -298,24 +297,101 @@
       margin: 0;
     }
 
-    /* ABOUT */
+    /* EVENTS */
 
-    .about {
-      background: var(--cream);
-    }
-
-    .about-content {
-      max-width: 900px;
-    }
-
-    .about-content p {
-      font-size: 1.08rem;
-      color: var(--muted);
+    .event-card {
       max-width: 850px;
+      margin-top: 45px;
+      padding: 35px;
+      background: var(--soft);
+      border: 1px solid var(--line);
     }
 
-    .about-content p strong {
+    .event-date {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      font-weight: 750;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .event-card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+    }
+
+    .event-card p {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .event-form {
+      max-width: 720px;
+      margin-top: 30px;
+    }
+
+    .event-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .event-form label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 650;
+      margin-bottom: 7px;
       color: var(--ink);
+    }
+
+    .event-form input,
+    .event-form select,
+    .event-form textarea {
+      width: 100%;
+      border: 1px solid #aebbb4;
+      background: white;
+      color: var(--ink);
+      border-radius: 4px;
+      padding: 13px 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    .event-form input:focus,
+    .event-form select:focus,
+    .event-form textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .event-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .event-field {
+      margin-bottom: 20px;
+    }
+
+    .event-submit {
+      border: 0;
+      cursor: pointer;
+      background: var(--ink);
+      color: white;
+      padding: 14px 25px;
+      border-radius: 5px;
+      font: inherit;
+      font-weight: 700;
+    }
+
+    .event-submit:hover {
+      opacity: 0.88;
+    }
+
+    .event-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 15px;
     }
 
     /* JOIN */
@@ -446,7 +522,8 @@
         gap: 35px;
       }
 
-      .form-row {
+      .form-row,
+      .event-form-row {
         grid-template-columns: 1fr;
       }
 
@@ -473,7 +550,7 @@
       <a href="#why">Why</a>
       <a href="#focus">Focus</a>
       <a href="#community">Community</a>
-      <a href="#about">About</a>
+      <a href="#events">Events</a>
       <a href="#join">Join</a>
     </nav>
 
@@ -501,15 +578,7 @@
       <p class="lead">
         EcoValue Forum brings together Israeli innovators, entrepreneurs,
         businesses, researchers and policymakers working to make environmental
-        solutions commercially viable and scalable.
-      </p>
-
-      <p class="lead">
-        EcoValue Forum is an Israeli community focused on the intersection
-        of environmental technology, business and markets. Its initial focus
-        is waste-to-value: technologies and businesses that turn waste,
-        recovered resources and environmental challenges into commercially
-        viable opportunities.
+        solutions commercially successful, scalable and valuable.
       </p>
 
       <div class="hero-buttons">
@@ -671,7 +740,8 @@
       </h2>
 
       <p class="lead">
-        EcoValue is designed to connect people who can turn environmental
+        EcoValue is designed to connect people who can help environmental
+        businesses and technologies thrive, grow, find new markets and turn
         innovation into real-world adoption and economic value.
       </p>
 
@@ -696,8 +766,8 @@
         <div class="who-card">
           <h3>Business</h3>
           <p>
-            Entrepreneurs, operators and commercial leaders building
-            environmental businesses.
+            Entrepreneurs, operators and commercial leaders building and
+            growing environmental businesses.
           </p>
         </div>
 
@@ -715,53 +785,189 @@
   </section>
 
 
-  <!-- ABOUT -->
+  <!-- EVENTS -->
 
-  <section id="about" class="about">
+  <section id="events" class="white">
     <div class="container">
 
-      <div class="about-content">
+      <div class="eyebrow">
+        Upcoming Events
+      </div>
 
-        <div class="eyebrow">
-          About EcoValue Forum
+      <h2>
+        EcoValue Forum<br>
+        Gathering
+      </h2>
+
+      <div class="event-card">
+
+        <div class="event-date">
+          September 23, 2026 · Israel + Virtual
         </div>
 
-        <h2>
-          Building the market<br>
-          for environmental value.
-        </h2>
+        <h3>
+          Join the EcoValue community.
+        </h3>
 
         <p>
-          <strong>EcoValue Forum is an Israeli community focused on the
-          intersection of environmental technology, business and markets.</strong>
+          A small gathering bringing together people building, operating,
+          investing in and commercializing environmental businesses and
+          technologies.
         </p>
 
-        <p>
-          We bring together entrepreneurs, technology developers, industry
-          leaders, investors, researchers and policymakers who are working on
-          environmental challenges and looking for ways to turn good ideas
-          into viable businesses and solutions that can actually be adopted.
-        </p>
+        <form
+          class="event-form"
+          action="https://formsubmit.co/71c373bd4746247d218c865f0eb6e64d"
+          method="POST"
+        >
 
-        <p>
-          Our initial focus is <strong>waste-to-value</strong>: technologies
-          and businesses that turn waste and underused resources into
-          products, inputs, energy and economic value.
-        </p>
+          <input
+            type="hidden"
+            name="_subject"
+            value="EcoValue Forum – Invitation Request"
+          >
 
-        <p>
-          We believe environmental solutions get adopted at scale when they
-          <strong>create real economic value</strong>. Regulation, subsidies
-          and green positioning can all play a role, but ultimately, solutions
-          that make economic sense are the ones with the potential to win
-          customers, attract investment and scale.
-        </p>
+          <input
+            type="hidden"
+            name="_template"
+            value="table"
+          >
 
-        <p>
-          EcoValue Forum is a place to meet others working on these problems,
-          exchange ideas, find opportunities and help promising solutions
-          get into the market.
-        </p>
+          <!-- Honeypot anti-spam field -->
+          <input
+            type="text"
+            name="_honey"
+            tabindex="-1"
+            autocomplete="off"
+            style="display:none"
+          >
+
+
+          <div class="event-form-row">
+
+            <div class="event-field">
+              <label for="event-name">Name *</label>
+
+              <input
+                id="event-name"
+                type="text"
+                name="name"
+                required
+                autocomplete="name"
+              >
+            </div>
+
+
+            <div class="event-field">
+              <label for="event-email">Email *</label>
+
+              <input
+                id="event-email"
+                type="email"
+                name="email"
+                required
+                autocomplete="email"
+              >
+            </div>
+
+          </div>
+
+
+          <div class="event-form-row">
+
+            <div class="event-field">
+              <label for="event-organization">Organization</label>
+
+              <input
+                id="event-organization"
+                type="text"
+                name="organization"
+                autocomplete="organization"
+              >
+            </div>
+
+
+            <div class="event-field">
+              <label for="event-role">Role / Area</label>
+
+              <select id="event-role" name="role">
+                <option value="">Please select</option>
+                <option value="Technology / Startup">
+                  Technology / Startup
+                </option>
+                <option value="Industry">
+                  Industry
+                </option>
+                <option value="Entrepreneur / Business">
+                  Entrepreneur / Business
+                </option>
+                <option value="Investor">
+                  Investor
+                </option>
+                <option value="Government / Policy">
+                  Government / Policy
+                </option>
+                <option value="Research / Academia">
+                  Research / Academia
+                </option>
+                <option value="Other">
+                  Other
+                </option>
+              </select>
+            </div>
+
+          </div>
+
+
+          <div class="event-field">
+
+            <label for="attendance">
+              Preferred attendance
+            </label>
+
+            <select id="attendance" name="attendance">
+              <option value="">Please select</option>
+              <option value="In person">
+                In person
+              </option>
+              <option value="Virtual">
+                Virtual
+              </option>
+              <option value="Either">
+                Either
+              </option>
+            </select>
+
+          </div>
+
+
+          <div class="event-field">
+
+            <label for="event-interest">
+              What are you working on?
+            </label>
+
+            <textarea
+              id="event-interest"
+              name="interest"
+              placeholder="Tell us briefly about your work or interest."
+            ></textarea>
+
+          </div>
+
+
+          <button class="event-submit" type="submit">
+            Request an Invitation →
+          </button>
+
+          <p class="event-note">
+            By requesting an invitation, you'll also join the EcoValue Forum
+            community and receive updates about future gatherings and
+            opportunities. We'll review requests and let you know if you are
+            invited.
+          </p>
+
+        </form>
 
       </div>
 
@@ -799,7 +1005,7 @@
         <input
           type="hidden"
           name="_subject"
-          value="New EcoValue Forum Member"
+          value="EcoValue Forum – New Member"
         >
 
         <input
@@ -914,8 +1120,10 @@
         </button>
 
         <p class="privacy-note">
-          Your information will only be used to contact you about
-          EcoValue Forum activities.
+          Can't make this gathering? Join the Forum to hear about future
+          gatherings, opportunities and developments across the community.
+          Your information will only be used to contact you about EcoValue
+          Forum activities.
         </p>
 
       </form>
@@ -945,3 +1153,4 @@
 
 </body>
 </html>
+```
